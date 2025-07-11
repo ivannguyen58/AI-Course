@@ -1,0 +1,320 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Arial', sans-serif;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.game-container {
+    background: rgba(255, 255, 255, 0.95);
+    border-radius: 20px;
+    padding: 30px;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
+    max-width: 800px;
+    width: 100%;
+}
+
+.game-header {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.game-header h1 {
+    color: #333;
+    font-size: 2.5em;
+    margin-bottom: 20px;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.game-controls {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.control-group {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.control-group label {
+    font-weight: bold;
+    color: #555;
+}
+
+.control-group select {
+    padding: 8px 12px;
+    border: 2px solid #ddd;
+    border-radius: 8px;
+    font-size: 16px;
+    background: white;
+    cursor: pointer;
+}
+
+#start-game {
+    padding: 12px 24px;
+    background: linear-gradient(45deg, #ff6b6b, #ffa500);
+    color: white;
+    border: none;
+    border-radius: 10px;
+    font-size: 18px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+#start-game:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+.game-info {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 30px;
+    padding: 20px;
+    background: rgba(255, 255, 255, 0.8);
+    border-radius: 15px;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.score-board {
+    display: flex;
+    gap: 30px;
+}
+
+.player-score {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 10px 20px;
+    background: linear-gradient(45deg, #4facfe, #00f2fe);
+    color: white;
+    border-radius: 10px;
+    font-weight: bold;
+}
+
+.player-score span:first-child {
+    font-size: 14px;
+    opacity: 0.9;
+}
+
+.player-score span:last-child {
+    font-size: 24px;
+    margin-top: 5px;
+}
+
+.game-stats {
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+.stat {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-weight: bold;
+    color: #555;
+}
+
+.stat span:first-child {
+    font-size: 12px;
+    opacity: 0.8;
+}
+
+.stat span:last-child {
+    font-size: 18px;
+    margin-top: 2px;
+}
+
+.game-board {
+    display: grid;
+    gap: 10px;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+
+.game-board.grid-4 {
+    grid-template-columns: repeat(4, 1fr);
+}
+
+.game-board.grid-6 {
+    grid-template-columns: repeat(6, 1fr);
+}
+
+.game-board.grid-8 {
+    grid-template-columns: repeat(8, 1fr);
+}
+
+.card {
+    aspect-ratio: 1;
+    background: linear-gradient(45deg, #667eea, #764ba2);
+    border-radius: 12px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    transition: transform 0.6s;
+    transform-style: preserve-3d;
+    position: relative;
+    min-height: 80px;
+}
+
+.card.flipped {
+    transform: rotateY(180deg);
+}
+
+.card.matched {
+    animation: match 0.6s ease-in-out;
+}
+
+@keyframes match {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.1); }
+    100% { transform: scale(1); }
+}
+
+.card-front,
+.card-back {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden;
+    border-radius: 12px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.card-front {
+    background: linear-gradient(45deg, #667eea, #764ba2);
+    color: white;
+    font-size: 24px;
+    font-weight: bold;
+    transform: rotateY(180deg);
+}
+
+.card-back {
+    background: linear-gradient(45deg, #ff9a9e, #fecfef);
+    color: white;
+    font-size: 30px;
+}
+
+.card-back::before {
+    content: "?";
+    font-size: 2em;
+    font-weight: bold;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.pokemon-image {
+    width: 60px;
+    height: 60px;
+    object-fit: contain;
+}
+
+.game-message {
+    text-align: center;
+    font-size: 18px;
+    font-weight: bold;
+    min-height: 25px;
+    color: #555;
+}
+
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+.modal-content {
+    background-color: white;
+    margin: 15% auto;
+    padding: 40px;
+    border-radius: 20px;
+    width: 90%;
+    max-width: 500px;
+    text-align: center;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+}
+
+.modal-content h2 {
+    color: #333;
+    margin-bottom: 20px;
+    font-size: 2em;
+}
+
+.modal-content p {
+    color: #666;
+    margin-bottom: 30px;
+    font-size: 1.2em;
+}
+
+#play-again {
+    padding: 12px 30px;
+    background: linear-gradient(45deg, #4facfe, #00f2fe);
+    color: white;
+    border: none;
+    border-radius: 10px;
+    font-size: 18px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+#play-again:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+@media (max-width: 768px) {
+    .game-container {
+        padding: 20px;
+        margin: 20px;
+    }
+    
+    .game-header h1 {
+        font-size: 2em;
+    }
+    
+    .game-info {
+        flex-direction: column;
+        gap: 15px;
+    }
+    
+    .score-board {
+        gap: 20px;
+    }
+    
+    .game-stats {
+        justify-content: center;
+    }
+    
+    .card {
+        min-height: 60px;
+    }
+    
+    .pokemon-image {
+        width: 40px;
+        height: 40px;
+    }
+}

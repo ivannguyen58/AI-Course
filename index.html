@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pokemon Memory Game</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="game-container">
+        <header class="game-header">
+            <h1>Pokemon Memory Game</h1>
+            <div class="game-controls">
+                <div class="control-group">
+                    <label for="grid-size">Grid Size:</label>
+                    <select id="grid-size">
+                        <option value="4">4x4</option>
+                        <option value="6">6x6</option>
+                        <option value="8">8x8</option>
+                    </select>
+                </div>
+                <div class="control-group">
+                    <label for="players">Players:</label>
+                    <select id="players">
+                        <option value="1">1 Player</option>
+                        <option value="2">2 Players</option>
+                    </select>
+                </div>
+                <button id="start-game">Start Game</button>
+            </div>
+        </header>
+        
+        <div class="game-info">
+            <div class="score-board">
+                <div class="player-score">
+                    <span id="player1-label">Player 1</span>
+                    <span id="player1-score">0</span>
+                </div>
+                <div class="player-score" id="player2-section" style="display: none;">
+                    <span id="player2-label">Player 2</span>
+                    <span id="player2-score">0</span>
+                </div>
+            </div>
+            <div class="game-stats">
+                <div class="stat">
+                    <span>Moves: </span>
+                    <span id="moves-count">0</span>
+                </div>
+                <div class="stat">
+                    <span>Time: </span>
+                    <span id="time-count">0:00</span>
+                </div>
+                <div class="stat">
+                    <span>Current Player: </span>
+                    <span id="current-player">Player 1</span>
+                </div>
+            </div>
+        </div>
+        
+        <div class="game-board" id="game-board">
+        </div>
+        
+        <div class="game-message" id="game-message"></div>
+    </div>
+
+    <div class="modal" id="win-modal">
+        <div class="modal-content">
+            <h2>Congratulations!</h2>
+            <p id="win-message"></p>
+            <button id="play-again">Play Again</button>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
